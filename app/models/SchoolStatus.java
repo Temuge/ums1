@@ -2,7 +2,9 @@ package models;
 
 import java.util.Date;
 
-public class SchoolStatus {
+import play.db.jpa.Model;
+
+public class SchoolStatus extends Model{
 	private Profile profile;
 	private School school;
 	private Date expectedGraduationDate;
