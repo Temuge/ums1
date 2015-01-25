@@ -1,15 +1,29 @@
 package controllers;
 
+import play.mvc.Before;
 import models.User;
 public class Security extends Secure.Security {
 	
+	@Before
+    public static void setConnectedUser() {
+        if(Security.isConnected()) {
+            User user = User.find("byEmail", Security.connected()).first();
+            renderArgs.put("isConnected", true);
+            renderArgs.put("user", user);
+        }
+    }
+	
 	public static boolean authenticate(String email, String password) {
-	    return User.connect(email, password) != null;
+		User user = User.connect(email, password);
+		if(user != null) {
+			session.put("username", user.getEmail());
+		}
+	    return user != null;
 	}
 	
 	static void onDisconnected(){
 	    try {
-	    	Users.login();
+	    	Application.index();
 	    } catch (Exception e) {
 	    	e.printStackTrace();
 	    }
