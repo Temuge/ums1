@@ -39,9 +39,34 @@ public class Users extends CRUD{
 		}
 	}
 	
+	/*
+	 * renders the page to show User info
+	 */
+	public static void show(Long id) {
+		User user = User.findById(id);
+		render(user);
+	}
+	
+	public static void edit(
+			Long id,
+			String firstName, 
+			String lastName, 
+			String email,
+			Boolean isAdmin) {
+		User user = User.findById(id);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setAdmin(isAdmin);
+		user.save();
+		Users.list(1, "", "", "", "");
+	}
+	
 	public static void login() {
 		render();
 	}
+	
+	
 	
 	public static void authenticate(String email, String password) {
 		boolean authentic = Security.authenticate(email, password);

@@ -1,7 +1,14 @@
 package models;
 
-import javax.persistence.Entity;
+import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import helpers.PasswordHelper;
@@ -11,7 +18,11 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
+@Table(name="users")
 public class User extends Model{
+	@Id
+	@GeneratedValue
+	private Long id;
 	@Required
 	private String firstName;
 	@Required
@@ -21,10 +32,9 @@ public class User extends Model{
 	private String email;
 	@Password
 	private String password;
-	private DateTime onCreated;
-	private DateTime onUpdated;
+	private Timestamp onCreated;
 	// default value for the isAdmin is false
-	private boolean isAdmin = false;
+	private Boolean isAdmin = false;
 	
 	public User(
 			String firstName, 
@@ -41,6 +51,14 @@ public class User extends Model{
 		}
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -73,12 +91,20 @@ public class User extends Model{
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
+	public Boolean isAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public Timestamp getOnCreated() {
+		return onCreated;
+	}
+
+	public void setOnCreated(Timestamp onCreated) {
+		this.onCreated = onCreated;
 	}
 
 	public static User connect(String email, String password) {
@@ -90,6 +116,10 @@ public class User extends Model{
         }
         return null;
     }
+	
+	public static User findById(Long id) {
+		return User.find("byId", id).first();
+	}
 	
 	@Override
 	public String toString() {

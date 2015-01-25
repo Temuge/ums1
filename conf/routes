@@ -5,9 +5,14 @@
 # Home page
 GET     /                                       Application.index
 
+# Admin
+
+GET		/admin/users/{id}					Users.show
+
 # USERS
 GET		/signup									Users.signup
 GET		/login									Users.login
+GET 	/usersList
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
