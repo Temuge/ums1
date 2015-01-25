@@ -48,25 +48,23 @@ public class Users extends CRUD{
 	}
 	
 	public static void edit(
-			Long id,
+			Long userId,
 			String firstName, 
 			String lastName, 
-			String email,
-			Boolean isAdmin) {
-		User user = User.findById(id);
+			String email) {
+		User user = User.findById(userId);
+		System.out.println(user);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.setAdmin(isAdmin);
+		System.out.println(user.getFirstName());
 		user.save();
-		Users.list(1, "", "", "", "");
+		redirect("/admin/users");
 	}
 	
 	public static void login() {
 		render();
 	}
-	
-	
 	
 	public static void authenticate(String email, String password) {
 		boolean authentic = Security.authenticate(email, password);

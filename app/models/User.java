@@ -20,9 +20,6 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="users")
 public class User extends Model{
-	@Id
-	@GeneratedValue
-	private Long id;
 	@Required
 	private String firstName;
 	@Required
@@ -49,14 +46,6 @@ public class User extends Model{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
