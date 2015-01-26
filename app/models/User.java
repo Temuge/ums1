@@ -2,10 +2,14 @@ package models;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -32,6 +36,9 @@ public class User extends Model{
 	private Timestamp onCreated;
 	// default value for the isAdmin is false
 	private Boolean isAdmin = false;
+	
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+	private Profile profile;
 	
 	public User(
 			String firstName, 
@@ -94,6 +101,14 @@ public class User extends Model{
 
 	public void setOnCreated(Timestamp onCreated) {
 		this.onCreated = onCreated;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 
 	public static User connect(String email, String password) {

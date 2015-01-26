@@ -1,9 +1,11 @@
 #{extends 'main.html' /}
+
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 			<li><a href="@{Application.index}">AMSA</a></li>
         	#{if user}
+        		<li><a href="@{Profiles.show}">My profile</a></li>
 				<li><a href="@{Users.users}">Users</a></li>
         		<li><a href="@{Secure.logout}">Log out</a></li>
 			#{/if}
@@ -16,6 +18,6 @@
 		</ul>
 	</div>
 </nav>
-<div>
+<div class="container-fluid">
 	#{doLayout /}
 </div>

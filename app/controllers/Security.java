@@ -39,4 +39,8 @@ public class Security extends Secure.Security {
 	    }
 	    return false;
 	}
+	
+	public static User getCurrentUser() {
+		return (User)renderArgs.get("user");
+	}
 }
