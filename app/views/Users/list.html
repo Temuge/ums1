@@ -10,7 +10,7 @@
     </div>
 	
     <div id="crudListTable">
-        #{crud.table fields:['firstName', 'lastName', 'email', 'isAdmin', 'onCreated', 'Application', 'applicationStatus']}
+        #{crud.table fields:['firstName', 'lastName', 'email', 'isAdmin', 'Application', 'applicationStatus']}
         	#{crud.custom 'Application'}
   				<a href="@{Admin.showProfile(object.id)}">
    					Review

@@ -13,7 +13,8 @@ public class Profiles extends CRUD{
 	
 	public static void show() {
 		Profile profile = Security.getCurrentUser().getProfile();
-		String applicationStatus = profile.getApplicationStatus().toString();
+		String applicationStatus = ((profile != null && profile.getApplicationStatus() != null) 
+				? profile.getApplicationStatus().toString() : null);
 		render(profile, applicationStatus);
 	}
 	
