@@ -1,7 +1,4 @@
-#{if !_applicationStatus}
-	<span class="label label-default"> Not submitted</span>
-#{/if} 
-#{if _applicationStatus == 'None'}
+#{if !_applicationStatus || _applicationStatus == 'None'}
 	<span class="label label-default"> Not submitted</span>
 #{/if} 
 #{if _applicationStatus == 'Pending'}

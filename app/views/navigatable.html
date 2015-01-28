@@ -1,16 +1,16 @@
 #{extends 'main.html' /}
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-custom">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
-			<li><a href="@{Application.index}">AMSA</a></li>
+			<li><a class="white-text transparent-hover" href="@{Application.index}">AMSA</a></li>
         	#{if user}
-        		<li><a href="@{Profiles.show}">My profile</a></li>
-				<li><a href="@{Users.users}">Users</a></li>
-        		<li><a href="@{Secure.logout}">Log out</a></li>
+        		<li><a class="white-text transparent-hover" href="@{Profiles.show}"> ${user.firstName}</a></li>
+				<li><a class="white-text transparent-hover" href="@{Users.users}">Users</a></li>
+        		<li><a class="white-text transparent-hover" href="@{Secure.logout}">Log out</a></li>
 			#{/if}
 			#{else}
-        		<li><a href="@{Users.signup}">Sign up</a></li>
+        		<li><a class="white-text transparent-hover" href="@{Users.signup}">Sign up</a></li>
 				<li>
 					#{include 'Users/tags/loginForm.html'/}
 				</li>

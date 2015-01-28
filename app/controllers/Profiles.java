@@ -81,7 +81,7 @@ public class Profiles extends CRUD{
 		profile.setReasonForApplication(reasonForApplication);
 		if (isSubmitted) {
 			profile.setApplicationStatus(ApplicationStatus.Pending);
-		} else {
+		} else if (profile.getApplicationStatus() == null) {
 			profile.setApplicationStatus(ApplicationStatus.None);
 		}
 		profile.save();

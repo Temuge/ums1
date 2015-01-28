@@ -42,9 +42,7 @@ public class Profile extends Model {
 	}
 	@Enumerated(EnumType.STRING)
 	private ApplicationStatus applicationStatus;
-	//school information
-	//private Collection<SchoolStatus> schoolStatus;
-	//others
+	
 	@Lob
 	@Column(columnDefinition = "TEXT")
 	private String reasonForApplication;
